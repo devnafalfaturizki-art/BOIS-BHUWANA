@@ -2,24 +2,36 @@ import { useEffect, useState } from 'react';
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/posts')
       .then(res => res.json())
-      .then(data => setPosts(data));
+      .then(data => {
+        setPosts(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <p>Loading...</p>;
 
   return (
     <div style={{ padding: '2rem' }}>
       <h1>Berita</h1>
-      <ul>
+      <div>
         {posts.map(post => (
-          <li key={post.id}>
+          <article key={post.id} style={{ marginBottom: '2rem' }}>
             <h2>{post.title}</h2>
+            {post.cover_image && <img src={post.cover_image} alt={post.title} style={{ maxWidth: '300px' }} />}
             <p>{post.excerpt}</p>
-          </li>
+            <small>{post.category} - {new Date(post.published_at).toLocaleDateString()}</small>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

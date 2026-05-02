@@ -6,7 +6,7 @@ export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Get()
-  search(@Query('q') q: string, @Query('type') type: string) {
-    return this.searchService.search(q, type);
+  search(@Query() query) {
+    return this.searchService.search(query);
   }
 }

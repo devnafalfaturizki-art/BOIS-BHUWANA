@@ -7,6 +7,7 @@ import { Assignment } from './entities/assignment.entity';
 import { PositionsModule } from './modules/positions/positions.module';
 import { OfficersModule } from './modules/officers/officers.module';
 import { PostsModule } from './modules/posts/posts.module';
+import { SearchService } from './modules/search.service';
 
 @Module({
   imports: [
@@ -21,5 +22,6 @@ import { PostsModule } from './modules/posts/posts.module';
     PostsModule,
   ],
   controllers: [SearchController],
+  providers: [SearchService],
 })
 export class AppModule {}
