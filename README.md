@@ -149,6 +149,83 @@ Tidak ada data yang di-overwrite. Seluruh histori tersimpan permanen dan dapat d
 
 ---
 
+## Setup Development Environment
+
+### Prerequisites
+- Node.js 18+
+- Docker & Docker Compose
+- PostgreSQL (via Docker)
+
+### Install Dependencies
+```bash
+# Install for all components
+npm install --prefix bois-api-public
+npm install --prefix bois-api-admin
+npm install --prefix bois-public
+npm install --prefix bois-admin
+```
+
+### Setup Database
+1. Start PostgreSQL:
+   ```bash
+   cd docker
+   docker-compose up -d
+   ```
+
+2. Database akan tersedia di `localhost:5432` dengan:
+   - DB: bois
+   - User: postgres
+   - Password: password
+
+### Setup Components
+
+#### 1. bois-api-public (Public API)
+```bash
+cd bois-api-public
+cp .env.example .env
+# Edit .env with database URL
+npm run start:dev
+```
+Server akan berjalan di `http://localhost:4000`
+
+#### 2. bois-api-admin (Admin API)
+```bash
+cd bois-api-admin
+cp .env.example .env
+# Edit .env with database URL and JWT secret
+npm run start:dev
+```
+Server akan berjalan di `http://localhost:4001`
+
+#### 3. bois-public (Public Website)
+```bash
+cd bois-public
+npm run dev
+```
+Website akan berjalan di `http://localhost:3000`
+
+#### 4. bois-admin (Admin Dashboard)
+```bash
+cd bois-admin
+npm run dev
+```
+Dashboard akan berjalan di `http://localhost:3001`
+
+### Environment Variables
+
+#### bois-api-public/.env
+```
+DATABASE_URL=postgresql://bois_public:public_password@localhost:5432/bois
+PORT=4000
+```
+
+#### bois-api-admin/.env
+```
+DATABASE_URL=postgresql://bois_admin:admin_password@localhost:5432/bois
+JWT_SECRET=your_jwt_secret_here
+PORT=4001
+```
+
 ## Lisensi
 
 Private / Internal Use Only
