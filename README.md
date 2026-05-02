@@ -234,4 +234,4 @@ Private / Internal Use Only
 
 ## Kontak
 
-Project maintained by: **[Your Name / Team]**
+Project maintained by: **LANG LANG BHUWANA**
