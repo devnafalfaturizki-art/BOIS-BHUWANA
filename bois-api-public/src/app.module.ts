@@ -7,7 +7,7 @@ import { Assignment } from './entities/assignment.entity';
 import { PositionsModule } from './modules/positions/positions.module';
 import { OfficersModule } from './modules/officers/officers.module';
 import { PostsModule } from './modules/posts/posts.module';
-import { SearchService } from './modules/search.service';
+import { SearchModule } from './modules/search/search.module';
 
 @Module({
   imports: [
@@ -20,8 +20,7 @@ import { SearchService } from './modules/search.service';
     PositionsModule,
     OfficersModule,
     PostsModule,
+    SearchModule,
   ],
-  controllers: [SearchController],
-  providers: [SearchService],
 })
 export class AppModule {}
